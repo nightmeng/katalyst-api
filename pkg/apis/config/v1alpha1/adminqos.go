@@ -384,19 +384,33 @@ type RootfsPressureEvictionConfig struct {
 	// +optional
 	EnableRootfsPressureEviction *bool `json:"enableRootfsPressureEviction,omitempty"`
 
-	// MinimumFreeThreshold is a threshold for a node.
-	// Once the rootfs free space of current node is lower than this threshold, the eviction manager will try to evict some pods.
+	// MinimumNodeFsFreeThreshold is a threshold for a node.
+	// Once the node rootfs free space of current node is lower than this threshold, the eviction manager will try to evict some pods.
 	// For example: "200Gi", "10%".
 	// +optional
 	// +kubebuilder:validation:Pattern=`^(0|[1-9][0-9]*)(\.[0-9]+)?%?$|^(0|[1-9][0-9]*)([kKmMGTPeE]i?)$`
-	MinimumFreeThreshold string `json:"minimumFreeThreshold,omitempty"`
+	MinimumNodeFsFreeThreshold string `json:"minimumNodeFsFreeThreshold,omitempty"`
 
-	// MinimumInodesFreeThreshold is a threshold for a node.
-	// Once the rootfs free inodes of current node is lower than this threshold, the eviction manager will try to evict some pods.
+	// MinimumNodeFsInodesFreeThreshold is a threshold for a node.
+	// Once the node rootfs free inodes of current node is lower than this threshold, the eviction manager will try to evict some pods.
 	// For example: "100000", "10%".
 	// +optional
 	// +kubebuilder:validation:Pattern=`^(0|[1-9]\d*)(\.\d+)?%?$|^\d+$`
-	MinimumInodesFreeThreshold string `json:"minimumInodesFreeThreshold,omitempty"`
+	MinimumNodeFsInodesFreeThreshold string `json:"minimumNodeFsInodesFreeThreshold,omitempty"`
+
+	// MinimumImageFsFreeThreshold is a threshold for a node.
+	// Once the image rootfs free space of current node is lower than this threshold, the eviction manager will try to evict some pods.
+	// For example: "200Gi", "10%".
+	// +optional
+	// +kubebuilder:validation:Pattern=`^(0|[1-9][0-9]*)(\.[0-9]+)?%?$|^(0|[1-9][0-9]*)([kKmMGTPeE]i?)$`
+	MinimumImageFsFreeThreshold string `json:"minimumImageFsFreeThreshold,omitempty"`
+
+	// MinimumImageFsInodesFreeThreshold is a threshold for a node.
+	// Once the image rootfs free inodes of current node is lower than this threshold, the eviction manager will try to evict some pods.
+	// For example: "100000", "10%".
+	// +optional
+	// +kubebuilder:validation:Pattern=`^(0|[1-9]\d*)(\.\d+)?%?$|^\d+$`
+	MinimumImageFsInodesFreeThreshold string `json:"minimumImageFsInodesFreeThreshold,omitempty"`
 
 	// PodMinimumUsedThreshold is a threshold for all pods.
 	// The eviction manager will ignore this pod if its rootfs used in bytes is lower than this threshold.
